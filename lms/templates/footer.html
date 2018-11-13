@@ -1,0 +1,101 @@
+## mako
+<%page expression_filter="h"/>
+<%!
+  from django.core.urlresolvers import reverse
+  from django.utils.translation import ugettext as _
+  from branding.api import get_footer
+%>
+<% footer = get_footer(is_secure=is_secure) %>
+<%namespace name='static' file='static_content.html'/>
+
+<div class="wrapper wrapper-footer">
+  <footer id="footer-openedx" class="grid-container"
+    ## When rendering the footer through the branding API,
+    ## the direction may not be set on the parent element,
+    ## so we set it here.
+    % if bidi:
+      dir=${bidi}
+    % endif
+  >
+
+    <div class="smarted-footer">
+      <div class="smarted-footer_footer-left">
+        <a href="http://ues.mx/" class="smarted-footer_logo"><img alt="organization logo" src="/static/${settings.DEFAULT_SITE_THEME}/images/footer-logo.png"></a>
+        <p class="footer-support" style="text-align:left;">
+          <span>Built on</span>
+          <a target="_blank" href="${footer['openedx_link']['url']}">
+            <svg class="svg-edx"  viewBox="0 0 100 70">
+              <use xlink:href="#logo-edx" />
+            </svg>
+          </a>
+          <span></span> </br>
+          <!--<span>by</span>
+          <a target="_blank" href="https://raccoongang.com" class="raccoon__logo">
+            <em>Raccoon Gang</em>
+            <svg class="svg-raccoon"  viewBox="0 0 100 100">
+              <use xlink:href="#logo-raccoon" />
+            </svg>
+          </a> -->
+        </p>
+      </div>
+      <div class="smarted-footer_cources-catalog">
+        <strong class="smarted-footer_title">Informaci&oacute;n General</strong>
+        <ul>
+          <li><a href="http://ues.mx">${_("Acerca de")}</a></li>
+          <li><a href="https://www.ues.mx/?p=especiales/ofertaeducativa/&cid=0&sid=2&smid=10&latder=0&params=tipopa=I">Oferta Acad&eacute;mica</a></li>
+          <li><a href="https://aspirantes.ues.mx/login.aspx">Aspirantes</a></li>
+          <li><a href="https://www.ues.mx/?p=especiales/contacto/default.aspx&cid=0&sid=6&smid=0&latder=0&params=">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="smarted-footer_general-info">
+        <strong class="smarted-footer_title">Plataforma</strong>
+        <ul>
+          <li><a href="/honor">C&oacute;digo de honor</a></li>
+          <li><a href="https://www.ues.mx/?p=interna.aspx&cid=56&sid=24&smid=0&latder=0&params=">T&eacute;rminos y condiciones</a></li>
+          <li><a href="https://www.ues.mx/?p=interna.aspx&cid=55&sid=25&smid=0&latder=0&params=">Aviso de privacidad</a></li>
+          <!-- <li><a href="http://smarted.online/tech/">${_("Technical support")}</a></li> -->
+        </ul>
+      </div>
+      <div class="smarted-footer_footer-right">
+        <strong class="smarted-footer_title">${_("Contacto")}</strong>
+        <span class="smarted-footer_phone"><em> (662) 6890100 </em></span>
+        <a href="mailto:plataforma.virtual@ues.mx" class="smarted-footer_email">plataforma.virtual@ues.mx</a>
+        <ul class="icon-list">
+          <li class="icon-list_item"><a href="https://es-la.facebook.com/Universidad-Estatal-de-Sonora-175697349231586/" target="_blank" class="icon-list_link">
+            <svg class="icon-list_svg" viewBox="0 0 35 35">
+              <use xlink:href="#ico-facebook" />
+            </svg>
+          </a>
+          </li>
+          <li class="icon-list_item"><a href="https://twitter.com/UES_MX" target="_blank" class="icon-list_link">
+            <svg class="icon-list_svg" viewBox="0 0 35 35">
+              <use xlink:href="#ico-twitter" />
+            </svg></a>
+          </li>
+          <li class="icon-list_item"><a href="https://www.instagram.com/ues.mx/" target="_blank" class="icon-list_link">
+            <svg class="icon-list_svg" viewBox="0 0 35 35">
+              <use xlink:href="#ico-instagram" />
+            </svg></a>
+          </li>
+          <li class="icon-list_item"><a href="https://www.youtube.com/channel/UCAIDb_OMPaCyOQGt1gTXv9w" target="_blank" class="icon-list_link">
+            <svg class="icon-list_svg" viewBox="0 0 35 35">
+              <use xlink:href="#ico-youtube" />
+            </svg></a>
+          </li>
+        </ul>
+        <span class="smarted-footer_copyright">Todos los derechos reservados a BUnited© 2018</span>
+      </div>
+    </div>
+  </footer>
+</div>
+% if include_dependencies:
+  <%static:js group='base_vendor'/>
+  <%static:css group='style-vendor'/>
+  <%include file="widgets/segment-io.html" />
+  <%include file="widgets/segment-io-footer.html" />
+% endif
+% if footer_css_urls:
+  % for url in footer_css_urls:
+    <link rel="stylesheet" type="text/css" href="${url}"></link>
+  % endfor
+% endif
