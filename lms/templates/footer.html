@@ -8,6 +8,14 @@
 <% footer = get_footer(is_secure=is_secure) %>
 <%namespace name='static' file='static_content.html'/>
 
+<style>
+    .smarted-footer_extension {
+        color: #F3A91D;
+        font-style: normal;
+        margin-left: 10px;
+    }
+</style>
+
 <div class="wrapper wrapper-footer">
   <footer id="footer-openedx" class="grid-container"
     ## When rendering the footer through the branding API,
@@ -21,7 +29,7 @@
     <div class="smarted-footer">
       <div class="smarted-footer_footer-left">
         <a href="http://ues.mx/" class="smarted-footer_logo"><img alt="organization logo" src="/static/${settings.DEFAULT_SITE_THEME}/images/footer-logo.png"></a>
-        <p class="footer-support" style="text-align:left;">
+        <p class="footer-support" style="text-align:left;padding-top: 3rem;">
           <span>Built on</span>
           <a target="_blank" href="${footer['openedx_link']['url']}">
             <svg class="svg-edx"  viewBox="0 0 100 70">
@@ -44,6 +52,8 @@
           <li><a href="http://ues.mx">${_("Acerca de")}</a></li>
           <li><a href="https://www.ues.mx/?p=especiales/ofertaeducativa/&cid=0&sid=2&smid=10&latder=0&params=tipopa=I">Oferta Acad&eacute;mica</a></li>
           <li><a href="https://aspirantes.ues.mx/login.aspx">Aspirantes</a></li>
+          <li><a href="https://escolares.ues.mx/login.aspx" target="_blank">Servicios escolares</a></li>
+          <li><a href="http://biblioteca.ues.mx" target="_blank">Biblioteca</a></li>
           <li><a href="https://www.ues.mx/?p=especiales/contacto/default.aspx&cid=0&sid=6&smid=0&latder=0&params=">Contacto</a></li>
         </ul>
       </div>
@@ -59,6 +69,7 @@
       <div class="smarted-footer_footer-right">
         <strong class="smarted-footer_title">${_("Contacto")}</strong>
         <span class="smarted-footer_phone"><em> (662) 6890100 </em></span>
+        <span class="smarted-footer_extension">Ext. 8217</span>
         <a href="mailto:plataforma.virtual@ues.mx" class="smarted-footer_email">plataforma.virtual@ues.mx</a>
         <ul class="icon-list">
           <li class="icon-list_item"><a href="https://es-la.facebook.com/Universidad-Estatal-de-Sonora-175697349231586/" target="_blank" class="icon-list_link">
